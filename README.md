@@ -1,73 +1,132 @@
-# React + TypeScript + Vite
+# User Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Додаток для управління користувачами з автентифікацією та відображенням списку користувачів.
 
-Currently, two official plugins are available:
+## Опис проекту
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+User Dashboard - це веб-додаток, побудований на React + TypeScript, який дозволяє:
 
-## React Compiler
+- Авторизуватися в системі
+- Переглядати інформацію про поточного користувача
+- Переглядати список всіх користувачів у зручній таблиці
+- Сортувати користувачів за різними полями
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Технології
 
-## Expanding the ESLint configuration
+- **React 18** - бібліотека для побудови інтерфейсів
+- **TypeScript** - типізація коду
+- **Redux Toolkit** - управління станом додатку
+- **React Router** - маршрутизація
+- **Ant Design** - UI компоненти
+- **Axios** - HTTP клієнт для API запитів
+- **SCSS Modules** - стилізація компонентів
+- **Vite** - інструмент для збірки та розробки
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Встановлення та запуск
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Передумови
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Переконайтеся, що у вас встановлено:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (версія 16 або вище)
+- npm або yarn
+
+### Кроки встановлення
+
+1. Клонуйте репозиторій:
+
+```bash
+git clone https://github.com/AlenaHavaleshko/user-dashboard
+cd user-dashboard
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Встановіть залежності:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+3. Запустіть проект у режимі розробки:
+
+```bash
+npm run dev
+```
+
+4. Відкрийте браузер та перейдіть за адресою:
+
+```
+http://localhost:5173
+```
+
+## Доступні скрипти
+
+- `npm run dev` - запуск проекту в режимі розробки
+- `npm run build` - збірка проекту для production
+- `npm run preview` - попередній перегляд production збірки
+- `npm run lint` - перевірка коду з ESLint
+
+## Функціональність
+
+### 1. Сторінка входу (Login)
+
+- Форма авторизації з полями username і password
+- Валідація введених даних
+- Відображення помилок при невдалій авторизації
+- Автоматичний редірект на Dashboard після успішного входу
+
+**Тестові дані для входу:**
+
+```
+Username: emilys
+Password: emilyspass
+```
+
+### 2. Сторінка Dashboard
+
+- **Інформація про поточного користувача:**
+  - Аватар
+  - Ім'я та прізвище
+  - Username
+  - Email
+  - Стать
+
+- **Таблиця всіх користувачів:**
+  - Ім'я (firstName) - з можливістю сортування
+  - Прізвище (lastName) - з можливістю сортування
+  - Вік (age) - з можливістю сортування
+  - Пагінація (10 записів на сторінці)
+  - Адаптивний дизайн
+
+- **Кнопка виходу (Logout):**
+  - Очищення сесії
+  - Редірект на сторінку входу
+
+## API
+
+Проект використовує публічне API [DummyJSON](https://dummyjson.com/):
+
+- `POST /auth/login` - авторизація користувача
+- `GET /users` - отримання списку користувачів
+
+## Структура проекту
+
+```
+src/
+├── app/              # Конфігурація Redux store
+├── assets/           # Статичні файли
+├── features/         # Функціональні модулі (auth, users)
+├── pages/            # Сторінки додатку (Login, Dashboard)
+├── router/           # Налаштування маршрутизації
+├── services/         # API сервіси
+└── styles/           # Глобальні стилі та змінні
+```
+
+Детальна архітектура описана в [ARCHITECTURE.md](ARCHITECTURE.md)
+
+## Дизайн
+
+Інструкції з UI/UX та компонентів знаходяться в [UI_GUIDE.md](UI_GUIDE.md)
+
+## Ліцензія
+
+MIT

@@ -28,21 +28,18 @@ const Dashboard = () => {
       dataIndex: "firstName",
       key: "firstName",
       sorter: (a, b) => a.firstName.localeCompare(b.firstName),
-      responsive: ["sm"],
     },
     {
       title: "Last Name",
       dataIndex: "lastName",
       key: "lastName",
       sorter: (a, b) => a.lastName.localeCompare(b.lastName),
-      responsive: ["sm"],
     },
     {
       title: "Age",
       dataIndex: "age",
       key: "age",
       sorter: (a, b) => a.age - b.age,
-      responsive: ["xs"],
     },
   ];
 
