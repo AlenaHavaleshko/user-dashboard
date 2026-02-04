@@ -1,0 +1,82 @@
+@import '../../styles/variables.scss';
+
+.container {
+  @include flex-center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: $spacing-md;
+}
+
+.formWrapper {
+  @include card;
+  width: 100%;
+  max-width: 450px;
+  animation: fadeIn 0.5s ease-in;
+
+  @include respond-to(sm) {
+    padding: $spacing-md;
+  }
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+
+  h1 {
+    font-size: 2rem;
+    color: $text-color;
+    margin-bottom: $spacing-xs;
+
+    @include respond-to(sm) {
+      font-size: 1.5rem;
+    }
+  }
+
+  p {
+    color: $text-secondary;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+.form {
+  margin-bottom: $spacing-md;
+
+  :global(.ant-form-item) {
+    margin-bottom: $spacing-md;
+  }
+
+  :global(.ant-input-affix-wrapper),
+  :global(.ant-input) {
+    border-radius: $border-radius-sm;
+  }
+
+  :global(.ant-btn) {
+    height: 44px;
+    font-size: 1rem;
+    border-radius: $border-radius-sm;
+    font-weight: 500;
+  }
+}
+
+.alert {
+  margin-bottom: $spacing-md;
+  border-radius: $border-radius-sm;
+}
+
+.hint {
+  :global(.ant-alert) {
+    border-radius: $border-radius-sm;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
