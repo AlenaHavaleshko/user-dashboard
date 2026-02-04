@@ -73,7 +73,7 @@ const Login = () => {
         <div className={styles.hint}>
           <Alert
             message="Test Credentials"
-            description="Username: test | Password: testpass"
+            description="Username: emilys | Password: emilyspass"
             type="info"
             showIcon
           />
