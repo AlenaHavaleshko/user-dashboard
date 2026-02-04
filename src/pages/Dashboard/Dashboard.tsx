@@ -46,7 +46,7 @@ const Dashboard = () => {
   if (isLoading) {
     return (
       <div className={styles.spinContainer}>
-        <Spin size="large" tip="Loading users..." />
+        <Spin size="large" tip="Loading users..." fullscreen />
       </div>
     );
   }
@@ -54,7 +54,7 @@ const Dashboard = () => {
   if (error) {
     return (
       <div className={styles.container}>
-        <Alert message="Error" description={error} type="error" showIcon />
+        <Alert title="Error" description={error} type="error" showIcon />
       </div>
     );
   }
@@ -74,7 +74,6 @@ const Dashboard = () => {
           </Button>
         </div>
 
-        {/* Current User Card */}
         {currentUser && (
           <Card
             className={styles.currentUserCard}
@@ -106,7 +105,6 @@ const Dashboard = () => {
           </Card>
         )}
 
-        {/* Users Table */}
         <Card
           className={styles.usersCard}
           title={`All Users (${users.length} total)`}

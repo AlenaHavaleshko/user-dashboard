@@ -9,6 +9,8 @@
   padding: $spacing-lg;
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 
   @include respond-to(md) {
     padding: $spacing-md;
@@ -16,6 +18,10 @@
 
   @include respond-to(sm) {
     padding: $spacing-sm;
+  }
+  
+  @include respond-to(xs) {
+    padding: 0.5rem;
   }
 }
 
@@ -52,6 +58,13 @@
   margin-bottom: $spacing-lg;
   border-radius: $border-radius-md;
   box-shadow: $shadow-md;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+
+  @include respond-to(sm) {
+    margin-bottom: $spacing-md;
+  }
 
   :global(.ant-card-head) {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -61,6 +74,21 @@
     :global(.ant-card-head-title) {
       color: $white;
       font-weight: 600;
+      font-size: 1rem;
+      
+      @include respond-to(sm) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  :global(.ant-card-body) {
+    @include respond-to(sm) {
+      padding: $spacing-md;
+    }
+    
+    @include respond-to(xs) {
+      padding: $spacing-sm;
     }
   }
 }
@@ -74,6 +102,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: $spacing-md;
   }
 }
 
@@ -92,6 +121,7 @@
 .userField {
   font-size: 1rem;
   line-height: 1.6;
+  word-break: break-word;
 
   strong {
     color: $text-color;
@@ -100,13 +130,16 @@
   }
 
   @include respond-to(sm) {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
 .usersCard {
   border-radius: $border-radius-md;
   box-shadow: $shadow-md;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
 
   :global(.ant-card-head) {
     background: $primary-color;
@@ -116,6 +149,21 @@
     :global(.ant-card-head-title) {
       color: $white;
       font-weight: 600;
+      font-size: 1rem;
+      
+      @include respond-to(sm) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  :global(.ant-card-body) {
+    @include respond-to(sm) {
+      padding: $spacing-md;
+    }
+    
+    @include respond-to(xs) {
+      padding: $spacing-sm;
     }
   }
 
@@ -123,14 +171,58 @@
     @include respond-to(sm) {
       font-size: 0.875rem;
     }
+    
+    @include respond-to(xs) {
+      font-size: 0.8rem;
+    }
   }
 
   :global(.ant-table-thead > tr > th) {
     background: lighten($primary-color, 45%);
     font-weight: 600;
+    
+    @include respond-to(xs) {
+      padding: 8px 4px;
+    }
+  }
+  
+  :global(.ant-table-tbody > tr > td) {
+    @include respond-to(xs) {
+      padding: 8px 4px;
+    }
   }
 
   :global(.ant-table-tbody > tr:hover > td) {
     background: lighten($primary-color, 48%);
+  }
+  
+  :global(.ant-table-pagination.ant-pagination) {
+    justify-content: center !important;
+    
+    @include respond-to(sm) {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      
+      :global(.ant-pagination-total-text) {
+        width: 100%;
+        text-align: center;
+        order: 1;
+        margin-bottom: $spacing-xs;
+      }
+      
+      :global(li) {
+        order: 2;
+      }
+      
+      :global(.ant-pagination-options) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        order: 3;
+        margin-left: 0 !important;
+        margin-top: $spacing-xs;
+      }
+    }
   }
 }

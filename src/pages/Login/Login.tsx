@@ -24,7 +24,7 @@ const Login = () => {
 
         {error && (
           <Alert
-            message="Login Failed"
+            title="Login Failed"
             description={error}
             type="error"
             showIcon
@@ -49,6 +49,7 @@ const Login = () => {
               prefix={<UserOutlined />}
               placeholder="Username"
               disabled={isLoading}
+              autoComplete="username"
             />
           </Form.Item>
 
@@ -60,6 +61,7 @@ const Login = () => {
               prefix={<LockOutlined />}
               placeholder="Password"
               disabled={isLoading}
+              autoComplete="current-password"
             />
           </Form.Item>
 
@@ -72,7 +74,7 @@ const Login = () => {
 
         <div className={styles.hint}>
           <Alert
-            message="Test Credentials"
+            title="Test Credentials"
             description="Username: emilys | Password: emilyspass"
             type="info"
             showIcon

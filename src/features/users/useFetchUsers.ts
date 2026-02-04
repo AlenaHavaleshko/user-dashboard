@@ -21,7 +21,7 @@ export const useFetchUsers = (limit = 30, skip = 0) => {
   }, [dispatch, limit, skip]);
 
   useEffect(() => {
-    // Fetch users only if not already loaded
+
     if (users.length === 0 && !isLoading && !error) {
       fetchUsers();
     }
