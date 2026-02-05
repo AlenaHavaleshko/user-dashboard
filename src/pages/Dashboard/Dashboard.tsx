@@ -7,10 +7,13 @@ import { logout } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import type { User } from "../../features/users/type";
 import styles from "./Dashboard.module.scss";
+import { useState } from "react";
 
 const { Content } = Layout;
 
 const Dashboard = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const { users, isLoading, error } = useFetchUsers();
   const currentUser = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
@@ -114,9 +117,14 @@ const Dashboard = () => {
             dataSource={users}
             rowKey="id"
             pagination={{
-              pageSize: 10,
+              current: currentPage,
+              pageSize: pageSize,
               showSizeChanger: true,
               showTotal: (total) => `Total ${total} users`,
+              onChange: (page, size) => {
+                setCurrentPage(page);
+                setPageSize(size);
+              },
             }}
             scroll={{ x: 400 }}
           />
